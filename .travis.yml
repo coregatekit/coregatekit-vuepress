@@ -1,11 +1,9 @@
 language: node_js
 node_js:
   - 'node'
+before_script:
+  - npm install -g firebase-tools
 script:
   - npm run docs:build
-deploy:
-  provider: firebase
-  token:
-    ecure: "Z2ZRE/cMme/n4/zblt7qvN+JKBPxspRElIQvnlQ4GficWvvoEpZQP5H82mzhzTX9zJfbyDda8WI3av2c+5siuCY9kQ3UPyB/7t3ZIQa8mH6DTBcqD9mG4oM9MKeKDXyQlHDNavBCCe0DLzN+kvG+HApWrHcgqgRQxifCxjO2nOEfXOe7gU9Efec28Gh2IcKITjSFLY3slISf3PhHoRaYgcsN02fBuonOsj+QZ5cBE1n6XpXRLl7WS43Qipp3NJjgfl4brTw6CHAxf69c86b5rFNG95BgnCS1JvFwX4pFqnCQSsu95AO8Cn788OCcj3xYvOt9CfpF0lIcgA66o7iJcch5UM+MHS6wY40+q7sXF6YLdwXiT3E24toiokn8/gL3vOUdZUS85PIBVzItPYZyqhFn4B9S5G0l7fSHsDID4YnumoYPxKN7PO2INtug5pKezL8aT12swfWK582/8eg7yfF3yTckj8ej3WjR8P+Y0Ewe7r0Q4kOOM4HC/3rKyxlEgaOQhSyGyLlqh5cYnmMoSqt0JFZfinuYzQ3sgBrNHGsRDDwxOHu+kw7E7P9ZDI+QlbRbg3C6Qux2j1PRWbiBDq5ifRLqkVEU2Y3QJYXCnUHov01qaCdRePjHbrv/xBQi0PfD2HMbH7NOzsFTHM4rg+5+3WJNDzbAU2nOCILlYPc="
-  on:
-    branch: main
+after_success:
+  - firebase deploy --token $FIREBASE_TOKEN --non-interactive
